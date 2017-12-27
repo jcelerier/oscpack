@@ -44,10 +44,18 @@
 #include <cstddef> // ptrdiff_t
 #include <iostream>
 #include <boost/version.hpp>
-#include <string_view>
-
+#include <boost/version.hpp>
+#include <boost/utility/string_view.hpp>
 namespace oscpack
-{ using string_view = std::string_view; }
+{
+using string_view = boost::string_view;
+inline std::string& operator+=(std::string& str, string_view s)
+{
+  str.append(s.data(), s.size());
+  return str;
+}
+}
+
 
 #include "SmallString.h"
 
